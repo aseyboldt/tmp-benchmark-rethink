@@ -19,8 +19,17 @@ pymc = ">=5.15.0,<5.16"
 [feature.openblas.dependencies]
 blas = { version = "*", build = "*openblas" }
 
-#[feature.mkl.dependencies]
-#blas = { version = "*", build = "*mkl" }
+[feature.mkl]
+platforms = ["linux-64"]
+
+[feature.mkl.dependencies]
+blas = { version = "*", build = "*mkl" }
+
+[feature.accelerate]
+platforms = ["osx-64", "osx-arm64"]
+
+[feature.accelerate.dependencies]
+blas = { version = "*", build = "*accelerate" }
 
 [dependencies]
 ipykernel = ">=6.29.3,<6.30"
@@ -31,5 +40,7 @@ numba = ">=0.59.1,<0.60"
 [environments]
 openblas-old = { features = ["old", "openblas"] }
 openblas-new = { features = ["new", "openblas"] }
-#mkl-old = { features = ["old", "mkl"] }
-#mkl-new = { features = ["new", "mkl"] }
+mkl-old = { features = ["old", "mkl"] }
+mkl-new = { features = ["new", "mkl"] }
+accelerate-old = { features = ["old", "accelerate"] }
+accelerate-new = { features = ["new", "accelerate"] }
