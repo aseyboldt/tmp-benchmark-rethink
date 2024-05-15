@@ -1,0 +1,35 @@
+[project]
+name = "benchmark-rethink"
+version = "0.1.0"
+description = "Add a short description here"
+authors = ["Adrian Seyboldt <adrian.seyboldt@gmail.com>"]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tasks.run-benchmarks]
+cmd = "python run_benchmarks.py"
+env = { OMP_NUM_THREADS = "1", MKL_NUM_THREADS = "1" }
+
+[feature.old.dependencies]
+pymc = ">=5.8.0,<5.9"
+
+[feature.new.dependencies]
+pymc = ">=5.15.0,<5.16"
+
+[feature.openblas.dependencies]
+blas = { version = "*", build = "*openblas" }
+
+[feature.mkl.dependencies]
+blas = { version = "*", build = "*mkl" }
+
+[dependencies]
+ipykernel = ">=6.29.3,<6.30"
+python = ">=3.11.9,<3.12"
+nutpie = ">=0.10.0,<0.11"
+numba = ">=0.59.1,<0.60"
+
+[environments]
+openblas-old = { features = ["old", "openblas"] }
+openblas-new = { features = ["new", "openblas"] }
+mkl-old = { features = ["old", "mkl"] }
+mkl-new = { features = ["new", "mkl"] }
