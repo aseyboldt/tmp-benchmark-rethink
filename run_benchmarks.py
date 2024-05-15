@@ -64,7 +64,7 @@ def sample_nutpie(model):
 def sample_pymc(model):
     start = time.time()
     with model:
-        pm.sample(progressbar=True)
+        pm.sample(progressbar=True, chain=4, cores=4)
     end = time.time()
 
     return end - start
