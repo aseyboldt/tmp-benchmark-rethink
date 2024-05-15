@@ -8,7 +8,7 @@ platforms = ["linux-64", "osx-64", "osx-arm64"]
 
 [tasks.run-benchmarks]
 cmd = "python run_benchmarks.py"
-env = { OMP_NUM_THREADS = "1", MKL_NUM_THREADS = "1" }
+env = { OMP_NUM_THREADS = "1", MKL_NUM_THREADS = "1", VECLIB_MAXIMUM_THREADS = "1" }
 
 [feature.old.dependencies]
 pymc = ">=5.8.0,<5.9"
